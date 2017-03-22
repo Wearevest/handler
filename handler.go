@@ -9,7 +9,8 @@ import (
 
 	"github.com/graphql-go/graphql"
 
-	"golang.org/x/net/context"
+	//"golang.org/x/net/context"
+  "context"
 )
 
 const (
@@ -20,7 +21,7 @@ const (
 
 type Handler struct {
 	Schema *graphql.Schema
-	
+
 	pretty bool
 }
 type RequestOptions struct {
@@ -125,11 +126,11 @@ func (h *Handler) ContextHandler(ctx context.Context, w http.ResponseWriter, r *
 		RequestString:  opts.Query,
 		VariableValues: opts.Variables,
 		OperationName:  opts.OperationName,
-		Context:        ctx,
+		Context:        r.Context(),
 	}
 	result := graphql.Do(params)
 
-	
+
 	if h.pretty {
 		w.WriteHeader(http.StatusOK)
 		buff, _ := json.MarshalIndent(result, "", "\t")
@@ -138,7 +139,7 @@ func (h *Handler) ContextHandler(ctx context.Context, w http.ResponseWriter, r *
 	} else {
 		w.WriteHeader(http.StatusOK)
 		buff, _ := json.Marshal(result)
-	
+
 		w.Write(buff)
 	}
 }
