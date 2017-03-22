@@ -14,7 +14,7 @@ import (
 	"github.com/wearevest/graphql/testutil"
 	"github.com/wearevest/handler"
 	//"github.com/wearevest/relay/examples/starwars" // TODO: remove this dependency
-	"golang.org/x/net/context"
+	"context"
 )
 
 func decodeResponse(t *testing.T, recorder *httptest.ResponseRecorder) *graphql.Result {
