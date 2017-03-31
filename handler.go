@@ -10,7 +10,7 @@ import (
 	"github.com/wearevest/graphql"
 
 	//context
-  "context"
+	"context"
 )
 
 const (
@@ -129,7 +129,6 @@ func (h *Handler) ContextHandler(ctx context.Context, w http.ResponseWriter, r *
 		Context:        r.Context(),
 	}
 	result := graphql.Do(params)
-
 
 	if h.pretty {
 		w.WriteHeader(http.StatusOK)
